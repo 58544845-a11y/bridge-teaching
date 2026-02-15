@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 除夕快乐 · 新年快乐 🧧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* 背景动画 */
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .lantern {
+            position: fixed;
+            width: 60px;
+            height: 80px;
+            background: linear-gradient(180deg, #ff6b6b 0%, #ee5a24 100%);
+            border-radius: 30px 30px 10px 10px;
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+            animation: swing 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .lantern::before {
+            content: '🏮';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+        }
+
+        .lantern:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .lantern:nth-child(2) { top: 15%; right: 5%; animation-delay: 1s; }
+        .lantern:nth-child(3) { top: 60%; left: 8%; animation-delay: 2s; }
+        .lantern:nth-child(4) { top: 65%; right: 8%; animation-delay: 0.5s; }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 标题区域 */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(238,90,36,0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255,215,0,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .year-text {
+            font-size: 24px;
+            color: #ffd700;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        .main-title {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255,215,0,0.3);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #ff9f43;
+            margin-top: 20px;
+        }
+
+        /* 祝福卡片 */
+        .blessing-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,215,0,0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .blessing-title {
+            font-size: 32px;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .blessing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .blessing-item {
+            background: linear-gradient(135deg, rgba(255,107,107,0.2) 0%, rgba(238,90,36,0.2) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,215,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blessing-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,107,107,0.3);
+        }
+
+        .blessing-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .blessing-text {
+            font-size: 24px;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .blessing-desc {
+            font-size: 16px;
+            color: #ffecd1;
+            line-height: 1.6;
+        }
+
+        /* 桥牌祝福 */
+        .bridge-section {
+            background: linear-gradient(135deg, rgba(0,100,0,0.2) 0%, rgba(0,80,0,0.1) 100%);
+            border: 2px solid rgba(0,255,0,0.3);
+        }
+
+        .bridge-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            font-size: 60px;
+        }
+
+        .suits {
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .suits:nth-child(1) { animation-delay: 0s; }
+        .suits:nth-child(2) { animation-delay: 0.5s; }
+        .suits:nth-child(3) { animation-delay: 1s; }
+        .suits:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 祝福语 */
+        .wishes {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .wishes-text {
+            font-size: 22px;
+            line-height: 2;
+            color: #ffecd1;
+        }
+
+        .wishes-text p {
+            margin-bottom: 15px;
+        }
+
+        /* 签名 */
+        .signature {
+            text-align: center;
+            padding: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,215,0,0.3);
+        }
+
+        .signature-text {
+            font-size: 20px;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .signature-name {
+            font-size: 18px;
+            color: #ff9f43;
+        }
+
+        /* 装饰线 */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            margin: 40px 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            .blessing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bridge-cards {
+                font-size: 40px;
+                flex-wrap: wrap;
+            }
+        }
+
+        /* 闪烁效果 */
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+    <div class="lantern"></div>
+
+    <div class="container">
+        <!-- 标题 -->
+        <div class="header">
+            <div class="year-text">二零二六年 · 除夕之夜</div>
+            <h1 class="main-title">除夕快乐</h1>
+            <div class="subtitle">🧨 辞旧迎新 · 阖家团圆 🧨</div>
+        </div>
+
+        <!-- 四愿祝福 -->
+        <div class="blessing-card">
+            <h2 class="blessing-title">
+                <span class="sparkle">✨</span>
+                愿您
+                <span class="sparkle">✨</span>
+            </h2>
+            <div class="blessing-grid">
+                <div class="blessing-item">
+                    <div class="blessing-icon">🧧</div>
+                    <div class="blessing-text">福</div>
+                    <div class="blessing-desc">如东海之水<br>滔滔不绝</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-icon">💰</div>
+                    <div class="blessing-text">禄</div>
+                    <div class="blessing-desc">如南山之松<br>青翠常青</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-icon">🍑</div>
+                    <div class="blessing-text">寿</div>
+                    <div class="blessing-desc">如不老之山<br>福寿绵长</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-icon">😊</div>
+                    <div class="blessing-text">喜</div>
+                    <div class="blessing-desc">如春风拂面<br>温暖心田</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 四重祝愿 -->
+        <div class="blessing-card">
+            <h2 class="blessing-title">🎊 新年祝愿 🎊</h2>
+            <div class="wishes">
+                <div class="wishes-text">
+                    <p><strong style="color: #ffd700;">一愿：</strong>身体健康，精神饱满</p>
+                    <p><strong style="color: #ffd700;">二愿：</strong>阖家欢乐，团团圆圆</p>
+                    <p><strong style="color: #ffd700;">三愿：</strong>事业进步，步步高升</p>
+                    <p><strong style="color: #ffd700;">四愿：</strong>万事如意，心想事成</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 桥牌祝福 -->
+        <div class="blessing-card bridge-section">
+            <h2 class="blessing-title" style="color: #00ff00;">♠️ 愿桥牌相伴 ♥️</h2>
+            <div class="bridge-cards">
+                <span class="suits">♠️</span>
+                <span class="suits">♥️</span>
+                <span class="suits">♦️</span>
+                <span class="suits">♣️</span>
+            </div>
+            <div class="wishes">
+                <div class="wishes-text">
+                    <p><strong style="color: #00ff00;">智慧</strong>与思考 · 在牌桌上锻炼大脑</p>
+                    <p><strong style="color: #00ff00;">社交</strong>与陪伴 · 结识志同道合的朋友</p>
+                    <p><strong style="color: #00ff00;">成长</strong>与进步 · 每一局都是学习</p>
+                    <p><strong style="color: #00ff00;">乐趣</strong>与收获 · 享受思考的快乐</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 特别祝福 -->
+        <div class="blessing-card">
+            <h2 class="blessing-title">🎁 特别祝福</h2>
+            <div class="wishes">
+                <div class="wishes-text">
+                    <p style="font-size: 20px; color: #ffd700; margin-bottom: 20px;">
+                        致我的桥牌学员们：
+                    </p>
+                    <p>愿你们在桥牌的世界里</p>
+                    <p>找到乐趣，收获智慧</p>
+                    <p>结识朋友，共同进步</p>
+                    <br>
+                    <p style="color: #ff6b6b;">除夕之夜</p>
+                    <p>不忘桥牌，但更重团圆</p>
+                    <p style="color: #ff6b6b;">明天醒来</p>
+                    <p>精神饱满，迎接新春</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 结尾祝福 -->
+        <div class="blessing-card" style="text-align: center;">
+            <h2 class="blessing-title">🎆 最后的话 🎆</h2>
+            <div class="wishes">
+                <div class="wishes-text" style="font-size: 24px; line-height: 2.2;">
+                    <p>除夕，是终点，也是起点</p>
+                    <p>总结过去，迎接未来</p>
+                    <br>
+                    <p style="color: #ffd700; font-weight: bold;">
+                        除夕快乐！新年快乐！
+                    </p>
+                    <p style="color: #ff6b6b; font-weight: bold;">
+                        🧨 阖家幸福！万事如意！🧨
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 签名 -->
+        <div class="signature">
+            <div class="signature-text">
+                <span class="sparkle">🐾</span>
+                祝福设计：AI 助手 Claw
+                <span class="sparkle">🐾</span>
+            </div>
+            <div class="signature-name">
+                2026年除夕<br>
+                ♠️♥️♦️♣️ 献给所有热爱桥牌的朋友们 ♠️♥️♦️♣️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 添加简单的烟花效果
+        function createFirework() {
+            const colors = ['#ff6b6b', '#ffd700', '#00ff00', '#ff9f43', '#ee5a24'];
+            const firework = document.createElement('div');
+            firework.style.position = 'fixed';
+            firework.style.width = '4px';
+            firework.style.height = '4px';
+            firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.borderRadius = '50%';
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = '100%';
+            firework.style.pointerEvents = 'none';
+            firework.style.zIndex = '100';
+            firework.style.boxShadow = '0 0 6px currentColor';
+            document.body.appendChild(firework);
+
+            const duration = 2000 + Math.random() * 1000;
+            const destination = Math.random() * 50;
+
+            firework.animate([
+                { transform: 'translateY(0) scale(1)', opacity: 1 },
+                { transform: `translateY(-${destination}vh) scale(0)`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'ease-out'
+            }).onfinish = () => firework.remove();
+        }
+
+        // 每隔一段时间创建烟花
+        setInterval(createFirework, 800);
+
+        // 页面加载时的庆祝效果
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createFirework, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
